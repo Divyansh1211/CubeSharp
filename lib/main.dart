@@ -1,3 +1,4 @@
+import 'package:cubesharp_assignment/catalogue_screen.dart';
 import 'package:cubesharp_assignment/login_page.dart';
 import 'package:flutter/material.dart';
 
@@ -12,11 +13,16 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: LoginPage(),
+      initialRoute: CatalogueScreen.id,
+      routes: {
+        LoginPage.id: (context) => const LoginPage(),
+        CatalogueScreen.id: (context) => CatalogueScreen(),
+      },
     );
   }
 }
