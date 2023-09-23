@@ -1,13 +1,16 @@
 import 'package:cubesharp_assignment/catalogue_screen.dart';
+import 'package:cubesharp_assignment/password_controller.dart';
 import 'package:flutter/material.dart';
 import 'Rounder_button.dart';
 
 class ModalScreen {
+  final TextEditingController passwordController = TextEditingController();
+
   final Function(String) updateEnteredPassword;
 
   ModalScreen({required this.updateEnteredPassword});
   void showPasswordModal(BuildContext context) {
-    String enteredPassword = ''; // Track the entered password
+    String enteredPassword = '';
 
     showModalBottomSheet(
       isScrollControlled: true,
@@ -27,15 +30,17 @@ class ModalScreen {
                 ),
               ),
               const SizedBox(height: 10),
-              TextFormField(
-                obscureText: true, // To hide the password text
-                onChanged: (value) {
-                  enteredPassword = value;
-                },
-                decoration: const InputDecoration(
-                  hintText: 'Password',
-                  border: OutlineInputBorder(),
+              PasswordField(
+                controller:
+                    passwordController,
+                hintText: 'Password',
+              ),
+              Text(
+                'Forgot Password?',
+                style: TextStyle(
+                  color: Colors.red,
                 ),
+                textAlign: TextAlign.right,
               ),
               const SizedBox(height: 20),
               Center(
